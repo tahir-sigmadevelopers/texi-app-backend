@@ -51,4 +51,25 @@ exports.addCar = async (req, res) => {
             error: error.message
         });
     }
+};
+
+// Get all cars
+exports.getAllCars = async (req, res) => {
+    try {
+        console.log('getting all cars');
+        const cars = await Car.find().sort({ createdAt: -1 }); // Sort by newest first
+
+        res.status(200).json({
+            success: true,
+            count: cars.length,
+            data: cars
+        });
+    } catch (error) {
+        console.error('Error getting cars:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error getting cars',
+            error: error.message
+        });
+    }
 }; 
