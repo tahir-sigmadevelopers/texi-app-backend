@@ -8,4 +8,7 @@ router.post('/add', carController.addCar);
 // Get all cars
 router.get('/', carController.getAllCars);
 
+// Delete a car
+router.delete('/:id', carController.deleteCar);
+
 module.exports = router; 

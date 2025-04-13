@@ -72,4 +72,36 @@ exports.getAllCars = async (req, res) => {
             error: error.message
         });
     }
+};
+
+// Delete a car
+exports.deleteCar = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        console.log('deleting car backend');
+        // Check if car exists
+        const car = await Car.findById(id);
+        if (!car) {
+            return res.status(404).json({
+                success: false,
+                message: 'Car not found'
+            });
+        }
+
+        // Delete the car
+        await Car.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success: true,
+            message: 'Car deleted successfully'
+        });
+    } catch (error) {
+        console.error('Error deleting car:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting car',
+            error: error.message
+        });
+    }
 }; 
