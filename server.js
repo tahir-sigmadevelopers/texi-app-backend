@@ -36,13 +36,15 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 const driverRoutes = require('./routes/driverRoutes');
 const carRoutes = require('./routes/carRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 app.use('/api/drivers', driverRoutes);
 app.use('/api/cars', carRoutes);
+app.use('/api/users', userRoutes);
 
 // Default route
 app.get('/', (req, res) => {
-  res.send('Driver API is running');
+  res.send('API is running');
 });
 
 // Start server
