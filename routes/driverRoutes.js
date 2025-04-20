@@ -5,7 +5,9 @@ const {
   getDriverById,
   createDriver,
   updateDriver,
-  deleteDriver
+  deleteDriver,
+  getCurrentProfile,
+  updateCurrentProfile
 } = require('../controllers/driverController');
 
 // Routes
@@ -14,10 +16,17 @@ router
   .get(getAllDrivers)
   .post(createDriver);
 
+  // Profile routes
+router
+.route('/profile')
+.get(getCurrentProfile)
+.put(updateCurrentProfile);
+
 router
   .route('/:id')
   .get(getDriverById)
   .put(updateDriver)
   .delete(deleteDriver);
+
 
 module.exports = router; 
